@@ -1,4 +1,4 @@
-<?
+<?php
 	session_start();
 	$_SESSION=array();
 	session_destroy;
@@ -11,5 +11,5 @@
 	{
 		setcookie(session_name(),'',time()-60*60);
 	}
-	header('Location:http://localhost/blog/index.php');
+	header('Location:http://localhost/blog/home.php');
 ?>

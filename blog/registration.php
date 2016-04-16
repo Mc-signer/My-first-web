@@ -45,11 +45,11 @@
 		if(!$nameerr&&!$passworderr&&!$rpassworderr&&!$captchaerr)
 		{
 			
-			$query="insert into user(name,password,gender,age,signUpDate) ".
-					"values('$name','".sha1($password)."','$gender','$age','".date('Y-m-d')."')";
+			$query="insert into user(name,password,gender,age,profile,signUpDate) ".
+					"values('$name','".sha1($password)."','$gender','$age','$profile','".date('Y-m-d')."')";
 			if(mysqli_query($con,$query))
 			{
-				header("Refresh: 3; url=http://localhost/blog/index.php");			
+				header("Refresh: 3; url=http://localhost/blog/login.php");			
 			}
 			else echo mysqli_error($con);
 		}
@@ -59,13 +59,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-.error{
-	color:red;
-}
-</style>
 	<meta charset="utf-8">
 	<title>注册</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
 <?php 
@@ -77,7 +73,7 @@
 		exit();
 	}
 ?>
-<div class='form'>
+<div class='contain'>
   <form action="registration.php" method="post">
 	<table>
 		<tr>
@@ -93,7 +89,7 @@
 		<tr>
 			<td>确认密码：</td>
 			<td><input type="password" name="rpassword"/></td><td class="error">*
-			<?php if(isset($rpassworderr)&&!empty($nameerr)) echo $rpassworderr;?></td>
+			<?php if(isset($rpassworderr)&&!empty($rpassworderr)) echo $rpassworderr;?></td>
 		</tr>
 		<tr>
 			<td>性别：</td>
